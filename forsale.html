@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<style>
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>SF Bike Rescue</title>
+	<link rel="shortcut icon" href="http://sfbikerescue.com/wp-content/themes/atahualpa/images/favicon/new-favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Feed" href="http://sfbikerescue.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Comments Feed" href="http://sfbikerescue.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Home Comments Feed" href="http://sfbikerescue.com/home/feed/">
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/jquery_002.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="scripts/sfbike.css">
+<script type="text/javascript">
+var app = angular.module('forSaleApp',[]);
+app.controller('forSaleController',function($scope, $http){
+   $http.get("http://192.168.1.237/sfbike/getbikes.php?type=A")
+   .then(function(response){$scope.bikes = response.data.bikes;});
+   $scope.getType = function(Type){
+      $http.get("http://192.168.1.237/sfbike/getbikes.php?type=" + Type)
+      .then(function(response){$scope.bikes = response.data.bikes;});
+      };
+});
+//<![CDATA[
+
+/* JQUERY */
+jQuery(document).ready(function(){ 
+	/* jQuery('ul#rmenu').superfish(); */
+	/* jQuery('ul#rmenu').superfish().find('ul').bgIframe({opacity:false}); */
+ 
+	/* For IE6 */
+	if (jQuery.browser.msie && /MSIE 6\.0/i.test(window.navigator.userAgent) && !/MSIE 7\.0/i.test(window.navigator.userAgent) && !/MSIE 8\.0/i.test(window.navigator.userAgent)) {
+
+		/* Max-width for images in IE6 */		
+		var centerwidth = jQuery("td#middle").width(); 
+		
+		/* Images without caption */
+		jQuery(".post img").each(function() { 
+			var maxwidth = centerwidth - 10 + 'px';
+			var imgwidth = jQuery(this).width(); 
+			var imgheight = jQuery(this).height(); 
+			var newimgheight = (centerwidth / imgwidth * imgheight) + 'px';	
+			if (imgwidth > centerwidth) { 
+				jQuery(this).css({width: maxwidth}); 
+				jQuery(this).css({height: newimgheight}); 
+			}
+		});
+		
+		/* Images with caption */
+		jQuery("div.wp-caption").each(function() { 
+			var captionwidth = jQuery(this).width(); 
+			var maxcaptionwidth = centerwidth + 'px';
+			var captionheight = jQuery(this).height();
+			var captionimgwidth =  jQuery("div.wp-caption img").width();
+			var captionimgheight =  jQuery("div.wp-caption img").height();
+			if (captionwidth > centerwidth) { 
+				jQuery(this).css({width: maxcaptionwidth}); 
+				var newcaptionheight = (centerwidth / captionwidth * captionheight) + 'px';
+				var newcaptionimgheight = (centerwidth / captionimgwidth * captionimgheight) + 'px';
+				jQuery(this).css({height: newcaptionheight}); 
+				jQuery("div.wp-caption img").css({height: newcaptionimgheight}); 
+				}
+		});
+		
+		/* sfhover for LI:HOVER support in IE6: */
+		jQuery("ul li").
+			hover( function() {
+					jQuery(this).addClass("sfhover")
+				}, 
+				function() {
+					jQuery(this).removeClass("sfhover")
+				} 
+			); 
+	/* End IE6 */
+	}
+		
+	/* Since 3.7.8: Auto resize videos (embed and iframe elements) 
+	TODO: Parse parent's dimensions only once per layout column, not per video
+	*/
+		
+	jQuery(".post table tr").
+		mouseover(function() {
+			jQuery(this).addClass("over");
+		}).
+		mouseout(function() {
+			jQuery(this).removeClass("over");
+		});
+
+	
+	jQuery(".post table tr:even").
+		addClass("alt");
+
+	
+	jQuery("input.text, input.TextField, input.file, input.password, textarea").
+		focus(function () {  
+			jQuery(this).addClass("highlight"); 
+		}).
+		blur(function () { 
+			jQuery(this).removeClass("highlight"); 
+		})
+	
+	jQuery("input.inputblur").
+		focus(function () {  
+			jQuery(this).addClass("inputfocus"); 
+		}).
+		blur(function () { 
+			jQuery(this).removeClass("inputfocus"); 
+		})
+
+	jQuery("input.button, input.Button, input#submit").
+		mouseover(function() {
+			jQuery(this).addClass("buttonhover");
+		}).
+		mouseout(function() {
+			jQuery(this).removeClass("buttonhover");
+		});
+
+	/* toggle "you can use these xhtml tags" */
+	jQuery("a.xhtmltags").
+		click(function(){ 
+			jQuery("div.xhtml-tags").slideToggle(300); 
+		});
+
+	/* For the Tabbed Widgets plugin: */
+	jQuery("ul.tw-nav-list").
+		addClass("clearfix");
+});
+//]]>
+</script>
+<style type="text/css">
+   .recentcomments a{
+      display:inline !important;
+      padding:0 !important;margin:0 !important;
+   }
+   
+   .tableMember{
+      font-family:helvetica;
+      padding-left:10px;
+      padding-right:10px;
+   }
+</style>
+</head>
+
+<body class="home page page-id-4 page-template-default">
+<div id="wrapper">
+<div id="container">
+<table id="layout" border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col class="colone"><col class="coltwo">
+<col class="colthree"></colgroup> 
+	<tbody><tr>
+		<!-- Header -->
+		<td id="header" colspan="3">
+		<table id="logoarea" border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr><td rowspan="2" class="logoarea-logo" valign="middle"><a href="http://sfbikerescue.com/"><img class="logo" src="scripts/logo.png" alt="SF Bike Rescue"></a></td>
+			<td rowspan="2" class="logoarea-title" valign="middle"><h2 class="blogtitle"><a href="http://sfbikerescue.com/">SF Bike Rescue</a></h2><p class="tagline"></p></td>
+			<td class="feed-icons" align="right" valign="middle"><div class="clearfix rss-box"><a class="comments-icon" href="http://sfbikerescue.com/comments/feed/" title="Subscribe to the COMMENTS feed">Comments</a><a class="posts-icon" href="http://sfbikerescue.com/feed/" title="Subscribe to the POSTS feed">Posts</a></div></td></tr>
+			<tr><td class="search-box" align="right" valign="bottom"><div class="searchbox">
+				<form method="get" class="searchform" action="http://sfbikerescue.com/">
+				<div class="searchbox-form"><input class="text inputblur" onfocus="this.value=''" onblur="this.value=''" name="s" type="text"></div>
+				</form>
+				</div>
+			</td></tr>
+	</tbody></table>
+				<div class="horbar1">&nbsp;</div>
+				<div id="imagecontainer" class="header-image-container" style="background: url('http://sfbikerescue.com/wp-content/themes/atahualpa/images/header/bikeheader 3.jpg') top center no-repeat;">
+				<div class="codeoverlay"></div><div class="opacityleft">&nbsp;</div>
+				<div class="opacityright">&nbsp;</div></div>
+				<div id="bfa_page_menu"><table style="margin: 0 auto" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr><td align="center">
+							<div id="menu1" class="menu-main-menu-container">
+							<ul id="rmenu2" class="clearfix rMenu-hor rMenu">
+								<li id="menu-item-6" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4 current_page_item menu-item-6"><a href="http://sfbikerescue.com/"><span>Home</span></a></li>
+								<li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-36"><a href="http://sfbikerescue.com/category/rescues/"><span>Rescues</span></a></li>
+								<li id="menu-item-59" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-59"><a href="http://sfbikerescue.com/category/bike-art/"><span>Bike Art</span></a></li>
+								<li id="menu-item-70" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-70"><a href="http://sfbikerescue.com/category/bike-recovery-services/"><span>Bike Recovery Services</span></a></li>
+								<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="http://sfbikerescue.com/about-us/"><span>About Us</span></a></li>
+								<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="http://sfbikerescue.com/contact/"><span>Contact</span></a></li>
+								<li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34"><a href="http://sfbikerescue.com/blog/"><span>blog</span></a></li>
+								<li id="menu-item-74" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-74"><a href="http://sfbikerescue.com/category/donations/"><span>Donations</span></a></li>
+							</ul>
+							</div>
+						</td></tr>
+					</tbody></table></div> <div class="horbar2">&nbsp;</div>
+				</td>
+		<!-- / Header -->
+			</tr>
+
+	<!-- Main Body -->	
+	<tr id="bodyrow">
+
+				<!-- Left Sidebar -->
+		<td id="left">
+
+			<div id="pages-2" class="widget widget_pages"><div class="widget-title"><h3>Pages</h3></div>		<ul>
+			<li class="page_item page-item-47"><a href="http://sfbikerescue.com/about-us/">About Us</a></li>
+<li class="page_item page-item-32"><a href="http://sfbikerescue.com/blog/">blog</a></li>
+<li class="page_item page-item-13"><a href="http://sfbikerescue.com/contact/">Contact</a></li>
+<li class="page_item page-item-101"><a href="http://sfbikerescue.com/favorite-bike-builds/">Favorite Bike Builds</a></li>
+<li class="page_item page-item-4 current_page_item"><a href="http://sfbikerescue.com/">Home</a></li>
+		</ul>
+		</div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<div class="widget-title"><h3>Recent Posts</h3></div>		<ul>
+					<li>
+				<a href="http://sfbikerescue.com/bike-blenders/" title="Bike Blenders">Bike Blenders</a>
+						</li>
+					<li>
+				<a href="http://sfbikerescue.com/things-built-using-bikes/" title="Things Built Using Bikes">Things Built Using Bikes</a>
+						</li>
+					<li>
+				<a href="http://sfbikerescue.com/bikes-i-miss-already/" title="Bikes I Miss Already">Bikes I Miss Already</a>
+						</li>
+					<li>
+				<a href="http://sfbikerescue.com/donations/" title="Donations">Donations</a>
+						</li>
+					<li>
+				<a href="http://sfbikerescue.com/stolen-bikes-in-sf/" title="Stolen Bikes in SF">Stolen Bikes in SF</a>
+						</li>
+				</ul>
+		</div><div id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title"><h3>Recent Comments</h3></div><ul id="recentcomments"></ul></div><div id="ngg-mrssw-2" class="widget ngg_mrssw"><div class="widget-title"><h3>Media RSS</h3></div><ul class="ngg-media-rss-widget">
+  <li><a href="http://sfbikerescue.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php" title="Link to the main image feed" class="ngg-media-rss-link"><img src="scripts/mrss-icon.gif" alt="MediaRSS Icon" title="Link to the main image feed" class="ngg-media-rss-icon"></a> <a href="http://sfbikerescue.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php" title="Link to the main image feed" class="ngg-media-rss-link">Media RSS</a></li>
+</ul>
+</div>
+		</td>
+		<!-- / Left Sidebar -->
+		
+				
+
+		<!-- Main Column -->
+		<td id="middle">	
+			<div class="post-4 page type-page status-publish hentry post odd" id="post-4">
+			<div class="post-headline">
+            <h1 style="display:inline-block;padding-right:10px">Bikes for Sale</h1>
+            <a href="admin/manage.html"><img src="images/manage.png" height="30"></img></a>
+         </div>
+<!--CONTENT BODY-->
+<div ng-app="forSaleApp" ng-controller="forSaleController">
+<table>
+    <!--<tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Price</th>
+   </tr>-->
+   <tr ng-repeat="bike in bikes"><td>
+      <table>
+         <!--<td class='tableMember'>{{ bike.bikenum }}</td>-->
+         <tr><td class='tableMember'>{{ bike.biketitle }}</td>
+         <tr><td class='tableMember'>{{ bike.biketype }}</td>
+         <tr><td class='tableMember'>${{ bike.bikeprice }}</td>
+         <tr><td><a href="showbike.html?id= {{ bike.bikenum }}">Click for more info</a></td>
+      </td></table>
+      <td>
+         <img src ="{{'images/bike-' + bike.bikenum + '-0.jpg'}}" height="120"></td>
+   </tr></td>
+</table>
+</div>
+<!--END CONTENT BODY-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>	
+						
+	
+					
+
+</td>
+<!-- / Main Column -->
+
+<!-- Right Inner Sidebar -->
+
+<!-- Right Sidebar -->
+<td id="right">
+
+	<div id="categories-2" class="widget widget_categories"><div class="widget-title"><h3>Categories</h3></div>		<ul>
+	<li class="cat-item cat-item-5"><a href="http://sfbikerescue.com/category/bike-art/" title="View all posts filed under Bike Art">Bike Art</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://sfbikerescue.com/category/bike-recovery-services/" title="View all posts filed under Bike Recovery Services">Bike Recovery Services</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://sfbikerescue.com/category/donations/" title="View all posts filed under Donations">Donations</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://sfbikerescue.com/category/rescues/" title="View all posts filed under Rescues">Rescues</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://sfbikerescue.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+		</ul>
+</div>
+</td>
+<!-- / Right Sidebar -->
+
+</tr>
+<!-- / Main Body -->
+<tr>
+
+<!-- Footer -->
+<td id="footer" colspan="3">
+    Copyright © 2016 <a href="http://sfbikerescue.com/">SF Bike Rescue</a> - All Rights Reserved<br>Powered by <a href="http://wordpress.org/">WordPress</a> &amp; <a href="http://forum.bytesforall.com/">Atahualpa</a>    
+    
+    	<div style="display:none">
+	</div>
+<script type="text/javascript" src="scripts/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="scripts/gprofiles.js"></script>
+<script type="text/javascript">
+
+</tr>
+</tbody></table><!-- / layout -->
+</div><!-- / container -->
+</div><img id="wpstats" alt=":)" src="scripts/g.gif" height="5" width="6"><!-- / wrapper -->
+
+</body></html>
