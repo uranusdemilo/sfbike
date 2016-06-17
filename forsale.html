@@ -4,14 +4,10 @@
 <style>
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>SF Bike Rescue</title>
+	<title>Bikes For Sale</title>
 	<link rel="shortcut icon" href="http://sfbikerescue.com/wp-content/themes/atahualpa/images/favicon/new-favicon.ico">
-<link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Feed" href="http://sfbikerescue.com/feed/">
-<link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Comments Feed" href="http://sfbikerescue.com/comments/feed/">
-<link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Home Comments Feed" href="http://sfbikerescue.com/home/feed/">
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<script type="text/javascript" src="scripts/jquery_002.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!--<script type="text/javascript" src="scripts/jquery_002.js"></script>-->
+<script src="scripts/angular.min.js"></script>
 <link rel="stylesheet" type="text/css" href="scripts/sfbike.css">
 <script type="text/javascript">
 var app = angular.module('forSaleApp',[]);
@@ -21,7 +17,7 @@ app.controller('forSaleController',function($scope, $http){
    $scope.getType = function(Type){
       $http.get("http://192.168.1.237/sfbike/getbikes.php?type=" + Type)
       .then(function(response){$scope.bikes = response.data.bikes;});
-      };
+   };
 });
 
 </script>
@@ -50,16 +46,10 @@ app.controller('forSaleController',function($scope, $http){
 		<!-- Header -->
 		<td id="header" colspan="3">
 		<table id="logoarea" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr><td rowspan="2" class="logoarea-logo" valign="middle"><a href="http://sfbikerescue.com/"><img class="logo" src="scripts/logo.png" alt="SF Bike Rescue"></a></td>
+			<tbody><tr><td rowspan="2" class="logoarea-logo" valign="middle"><a href="http://sfbikerescue.com/"><img class="logo" src="/sfbike/scripts/logo.png" alt="SF Bike Rescue"></a></td>
 			<td rowspan="2" class="logoarea-title" valign="middle"><h2 class="blogtitle"><a href="http://sfbikerescue.com/">SF Bike Rescue</a></h2><p class="tagline"></p></td>
-			<td class="feed-icons" align="right" valign="middle"><div class="clearfix rss-box"><a class="comments-icon" href="http://sfbikerescue.com/comments/feed/" title="Subscribe to the COMMENTS feed">Comments</a><a class="posts-icon" href="http://sfbikerescue.com/feed/" title="Subscribe to the POSTS feed">Posts</a></div></td></tr>
-			<tr><td class="search-box" align="right" valign="bottom"><div class="searchbox">
-				<form method="get" class="searchform" action="http://sfbikerescue.com/">
-				<div class="searchbox-form"><input class="text inputblur" onfocus="this.value=''" onblur="this.value=''" name="s" type="text"></div>
-				</form>
-				</div>
-			</td></tr>
-	</tbody></table>
+			</tbody>
+      </table>
 				<div class="horbar1">&nbsp;</div>
 				<div id="imagecontainer" class="header-image-container" style="background: url('http://sfbikerescue.com/wp-content/themes/atahualpa/images/header/bikeheader 3.jpg') top center no-repeat;">
 				<div class="codeoverlay"></div><div class="opacityleft">&nbsp;</div>
@@ -196,9 +186,6 @@ app.controller('forSaleController',function($scope, $http){
     
     	<div style="display:none">
 	</div>
-<script type="text/javascript" src="scripts/devicepx-jetpack.js"></script>
-<script type="text/javascript" src="scripts/gprofiles.js"></script>
-<script type="text/javascript">
 
 </tr>
 </tbody></table><!-- / layout -->
