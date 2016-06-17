@@ -9,10 +9,10 @@
 <link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Feed" href="http://sfbikerescue.com/feed/">
 <link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Comments Feed" href="http://sfbikerescue.com/comments/feed/">
 <link rel="alternate" type="application/rss+xml" title="SF Bike Rescue » Home Comments Feed" href="http://sfbikerescue.com/home/feed/">
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<script type="text/javascript" src="scripts/jquery_002.js"></script>
+<script type="text/javascript" src="/sfbike/scripts/jquery.js"></script>
+<script type="text/javascript" src="/sfbike/scripts/jquery_002.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<link rel="stylesheet" type="text/css" href="scripts/sfbike.css">
+<link rel="stylesheet" type="text/css" href="/sfbike/scripts/sfbike.css">
 <script type="text/javascript">
 var app = angular.module('forSaleApp',[]);
 app.controller('forSaleController',function($scope, $http){
@@ -35,6 +35,9 @@ app.controller('forSaleController',function($scope, $http){
       font-family:helvetica;
       padding-left:10px;
       padding-right:10px;
+   }
+   img{
+      border:none;
    }
 </style>
 </head>
@@ -127,10 +130,8 @@ app.controller('forSaleController',function($scope, $http){
 		<!-- Main Column -->
 		<td id="middle">	
 			<div class="post-4 page type-page status-publish hentry post odd" id="post-4">
-			<div class="post-headline">
-            <h1 style="display:inline-block;padding-right:10px">Bikes for Sale</h1>
-            <a href="admin/manage.html"><img src="images/manage.png" height="30"></img></a>
-         </div>
+			<div class="post-headline"><h1>Manage Bikes for Sale</h1></div>
+         <div><a href="newbike.html"><h3 style="display:inline-block;padding-right:10px">New Item</h3><img src="icons/newitem.jpg"></a></div>
 <!--CONTENT BODY-->
 <div ng-app="forSaleApp" ng-controller="forSaleController">
 <table>
@@ -146,10 +147,11 @@ app.controller('forSaleController',function($scope, $http){
          <tr><td class='tableMember'>{{ bike.biketitle }}</td>
          <tr><td class='tableMember'>{{ bike.biketype }}</td>
          <tr><td class='tableMember'>${{ bike.bikeprice }}</td>
-         <tr><td><a href="showbike.html?id= {{ bike.bikenum }}">Click for more info</a></td>
-      </td></table>
+         <tr><td><a href="{{ 'editbike.html?id=' + bike.bikenum }}"><img src="icons/editbutton.jpg"></a>
+             <a href="{{ 'deletebike.html?id=' + bike.bikenum }}"><img src="icons/nukebutton.jpg"></a>
+         </tr></td></table>
       <td>
-         <img src ="{{'images/bike-' + bike.bikenum + '-0.jpg'}}" height="120"></td>
+         <img src ="{{'/sfbike/images/bike-' + bike.bikenum + '-0.jpg'}}" height="120"></td>
    </tr></td>
 </table>
 </div>
