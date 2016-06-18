@@ -12,14 +12,13 @@
 <script type="text/javascript">
 var app = angular.module('forSaleApp',[]);
 app.controller('forSaleController',function($scope, $http){
-   $http.get("http://192.168.1.237/sfbike/getbikes.php?type=A")
+   $http.get("http://192.168.1.237/sfbike/scripts/getbikes.php?type=A")
    .then(function(response){$scope.bikes = response.data.bikes;});
    $scope.getType = function(Type){
-      $http.get("http://192.168.1.237/sfbike/getbikes.php?type=" + Type)
+      $http.get("http://192.168.1.237/sfbike/scripts/getbikes.php?type=" + Type)
       .then(function(response){$scope.bikes = response.data.bikes;});
       };
 });
-
 </script>
 <style type="text/css">
    .recentcomments a{
@@ -106,8 +105,8 @@ app.controller('forSaleController',function($scope, $http){
 				<a href="http://sfbikerescue.com/stolen-bikes-in-sf/" title="Stolen Bikes in SF">Stolen Bikes in SF</a>
 						</li>
 				</ul>
-		</div><div id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title"><h3>Recent Comments</h3></div><ul id="recentcomments"></ul></div><div id="ngg-mrssw-2" class="widget ngg_mrssw"><div class="widget-title"><h3>Media RSS</h3></div><ul class="ngg-media-rss-widget">
-  <li><a href="http://sfbikerescue.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php" title="Link to the main image feed" class="ngg-media-rss-link"><img src="scripts/mrss-icon.gif" alt="MediaRSS Icon" title="Link to the main image feed" class="ngg-media-rss-icon"></a> <a href="http://sfbikerescue.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php" title="Link to the main image feed" class="ngg-media-rss-link">Media RSS</a></li>
+<!--		</div><div id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title"><h3>Recent Comments</h3></div><ul id="recentcomments"></ul></div><div id="ngg-mrssw-2" class="widget ngg_mrssw"><div class="widget-title"><h3>Media RSS</h3></div><ul class="ngg-media-rss-widget">-->
+  
 </ul>
 </div>
 		</td>
@@ -190,6 +189,6 @@ app.controller('forSaleController',function($scope, $http){
 </tr>
 </tbody></table><!-- / layout -->
 </div><!-- / container -->
-</div><img id="wpstats" alt=":)" src="scripts/g.gif" height="5" width="6"><!-- / wrapper -->
+</div><!--<img id="wpstats" alt=":)" src="scripts/g.gif" height="5" width="6">-->
 
 </body></html>

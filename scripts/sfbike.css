@@ -1222,6 +1222,7 @@ img {
 #dbem-location-map img {
     background: none !important
 }
+/* Turned off 6-17-2016, mis-aligning images
 .post img {
     padding: 5px;
     border: solid 1px #dddddd;
@@ -1230,7 +1231,7 @@ img {
     -khtml-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px
-}
+}*/
 .post img.size-full {
     max-width: 96%;
     width: auto;
