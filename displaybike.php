@@ -141,18 +141,19 @@ app.controller('displayBikeController',function($scope, $http){
 </div>
 <?php
 function countPics($id){
-   $consolecmd = "ls -l images/bike-" . $id . "-* | wc -l";
+   $consolecmd = "ls -l images/bike-" . trim($id) . "-* | wc -l";
    $picCount = shell_exec($consolecmd);
+   /*return $picCount;*/
    return $picCount;
 }
 function makeList($bikeString){
-   $bikeList = "<b>";
+   $bikeList = "<ul><b>\n";
    $bikeArray=explode("<br>",$bikeString);
    $len = count($bikeArray);
    for($feature=0;$feature<count($bikeArray);$feature++){
-      $bikeList = $bikeList . "<li>" . $bikeArray[$feature] . "</li>"; 
+      $bikeList = $bikeList . "    <li>" . $bikeArray[$feature] . "</li>\n"; 
    }
-   $bikeList = $bikeList . "</ul>";
+   $bikeList = $bikeList . "</b></ul>\n";
    return $bikeList;
 }
 
@@ -160,16 +161,20 @@ $fsconnect=mysqli_connect("localhost","dbagent","patches","sfbikerescue");
 $getBikeQuery="select * from bikesforsale where bikeid=" . $_GET['id'];
 $result = $fsconnect->query($getBikeQuery);
 $bikeInfo = $result->fetch_row();
-echo "<h2>" . $bikeInfo[1] . "</h2><br>";
+echo "<h2>" . $bikeInfo[1] . "</h2><br>\n";
 echo "<div><table>";
-   echo "<tr><td class='description'>SFBC Code: </td><td>". $bikeInfo[0] . "</td>";
-   echo "<tr><td class='description'>Bike Type: </td><td>". $bikeInfo[2] . "</td>";
-   echo "<tr><td class='description'>Bike Price: </td><td>$". $bikeInfo[4] . "</td>";
-echo "</table></div>";
-echo "<div class='detailsList'>". makeList($bikeInfo[3]) . "</div>";
-echo "<div><img  class='bikepic'  src='images/bike-" . $bikeInfo[0] . "-0.jpg' width='350'></img></span></div>";
-
-echo countPics($_GET['id']);
+   echo "<tr><td class='description'>SFBC Code: </td><td>". $bikeInfo[0] . "</td>\n";
+   echo "<tr><td class='description'>Bike Type: </td><td>". $bikeInfo[2] . "</td>\n";
+   echo "<tr><td class='description'>Bike Price: </td><td>$". $bikeInfo[4] . "</td>\n";
+echo "</table></div>\n";
+echo "<div class='detailsList'>\n". makeList($bikeInfo[3]) . "</div>";
+echo "<span><img  class='bikepic'  src='images/bike-" . $bikeInfo[0] . "-0.jpg' width='350'></span></div>\n";
+$imgCount=countPics($_GET['id']);
+echo "<div id='thumbnails'>\n";
+for($pic=0;$pic<$imgCount;$pic++){
+echo "<span><img src = 'images/bike-" . $bikeInfo[0] ."-" . $pic . ".jpg' width='120'></span>\n" ;
+}
+echo "</div>";
 
 ?>
 <!--END CONTENT BODY-->
