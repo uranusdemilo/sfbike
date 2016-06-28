@@ -16,37 +16,41 @@ app.controller('displayBikeController',function($scope, $http){
       echo "\$http.get('http://192.168.1.237/sfbike/scripts/showbike.php?id=" . $_GET['id'] . "')";
    ?>
    .then(function(response){$scope.bike = response.data.bike;});
-   $scope.sayhi=function(){
-      var descriptionWhole = $scope.bike.bikedesc;
-      var descriptionParts = descriptionWhole.split("<br>");
-      return ("<ul><li>" + descriptionParts[0] + "</li><li>" + descriptionParts[1] + "</li><li>" + descriptionParts[2] + "</li><li>" + descriptionParts[3] + "</li><li>" + descriptionParts[4] + "</li></ul>");
+   $scope.bikeNumber="images/bike-<?php echo($_GET['id']);?>";
+   $scope.picNumber=0;
+   $scope.changeMainPic=function(){
+      
    };
 });
 
 </script>
 <style type="text/css">
-   .recentcomments a{
-      display:inline !important;
-      padding:0 !important;margin:0 !important;
-   }
-   
-   .tableMember{
-      font-family:helvetica;
-      padding-left:10px;
-      padding-right:10px;
-   }
-   .description{
-      font-weight:bold;
-   }
-   
-   .bikepic{
-      border: 2px solid black;
-   }
-   
-   .detailsList{
-      padding-bottom:15px;
-      padding-left:20px;
-   }
+.recentcomments a{
+   display:inline !important;
+   padding:0 !important;margin:0 !important;
+}
+
+.tableMember{
+   font-family:helvetica;
+   padding-left:10px;
+   padding-right:10px;
+}
+.description{
+   font-weight:bold;
+}
+
+.bikepic{
+   border: 2px solid black;
+}
+  
+.detailsList{
+   padding-bottom:15px;
+   padding-left:20px;
+}
+
+#thumbnails{
+   padding-bottom:20px;
+}
 </style>
 </head>
 
@@ -60,11 +64,11 @@ app.controller('displayBikeController',function($scope, $http){
 	<tbody><tr>
 		<!-- Header -->
 		<td id="header" colspan="3">
-		<table id="logoarea" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr><td rowspan="2" class="logoarea-logo" valign="middle"><a href="http://sfbikerescue.com/"><img class="logo" src="/sfbike/scripts/logo.png" alt="SF Bike Rescue"></a></td>
-			<td rowspan="2" class="logoarea-title" valign="middle"><h2 class="blogtitle"><a href="http://sfbikerescue.com/">SF Bike Rescue</a></h2><p class="tagline"></p></td>
-			</tbody>
-      </table>
+         <table id="logoarea" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody><tr><td rowspan="2" class="logoarea-logo" valign="middle"><a href="http://sfbikerescue.com/"><img class="logo" src="/sfbike/scripts/logo.png" alt="SF Bike Rescue"></a></td>
+            <td rowspan="2" class="logoarea-title" valign="middle"><h2 class="blogtitle"><a href="http://sfbikerescue.com/">SF Bike Rescue</a></h2><p class="tagline"></p></td>
+            </tbody>
+         </table>
          <div class="horbar1">&nbsp;</div>
 			<div id="imagecontainer" class="header-image-container" style="background: url('http://sfbikerescue.com/wp-content/themes/atahualpa/images/header/bikeheader 3.jpg') top center no-repeat;">
 			<div class="codeoverlay"></div><div class="opacityleft">&nbsp;</div>
@@ -89,8 +93,7 @@ app.controller('displayBikeController',function($scope, $http){
                </tbody>
             </table>
          </div>
-         <div class="horbar2">&nbsp;</div>
-         </td>
+      </td>
 		<!-- / Header -->
 		</tr>
 
@@ -98,36 +101,26 @@ app.controller('displayBikeController',function($scope, $http){
 	<tr id="bodyrow">
 
 				<!-- Left Sidebar -->
-		<td id="left">
-
-			<div id="pages-2" class="widget widget_pages"><div class="widget-title"><h3>Pages</h3></div>		<ul>
-			<li class="page_item page-item-47"><a href="http://sfbikerescue.com/about-us/">About Us</a></li>
-<li class="page_item page-item-32"><a href="http://sfbikerescue.com/blog/">blog</a></li>
-<li class="page_item page-item-13"><a href="http://sfbikerescue.com/contact/">Contact</a></li>
-<li class="page_item page-item-101"><a href="http://sfbikerescue.com/favorite-bike-builds/">Favorite Bike Builds</a></li>
-<li class="page_item page-item-4 current_page_item"><a href="http://sfbikerescue.com/">Home</a></li>
-		</ul>
-		</div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<div class="widget-title"><h3>Recent Posts</h3></div>		<ul>
-					<li>
-				<a href="http://sfbikerescue.com/bike-blenders/" title="Bike Blenders">Bike Blenders</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/things-built-using-bikes/" title="Things Built Using Bikes">Things Built Using Bikes</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/bikes-i-miss-already/" title="Bikes I Miss Already">Bikes I Miss Already</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/donations/" title="Donations">Donations</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/stolen-bikes-in-sf/" title="Stolen Bikes in SF">Stolen Bikes in SF</a>
-						</li>
-				</ul>
-		</div><div id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title"><h3>Recent Comments</h3></div><ul id="recentcomments"></ul></div><div id="ngg-mrssw-2" class="widget ngg_mrssw"><div class="widget-title"><h3>Media RSS</h3></div><ul class="ngg-media-rss-widget">
-  <li><a href="http://sfbikerescue.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php" title="Link to the main image feed" class="ngg-media-rss-link"><img src="scripts/mrss-icon.gif" alt="MediaRSS Icon" title="Link to the main image feed" class="ngg-media-rss-icon"></a> <a href="http://sfbikerescue.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php" title="Link to the main image feed" class="ngg-media-rss-link">Media RSS</a></li>
-</ul>
-</div>
+      <td id="left">
+		<div id="pages-2" class="widget widget_pages"><div class="widget-title"><h3>Pages</h3></div>
+         <ul>
+            <li class="page_item page-item-47"><a href="http://sfbikerescue.com/about-us/">About Us</a></li>
+            <li class="page_item page-item-32"><a href="http://sfbikerescue.com/blog/">blog</a></li>
+            <li class="page_item page-item-13"><a href="http://sfbikerescue.com/contact/">Contact</a></li>
+            <li class="page_item page-item-101"><a href="http://sfbikerescue.com/favorite-bike-builds/">Favorite Bike Builds</a></li>
+            <li class="page_item page-item-4 current_page_item"><a href="http://sfbikerescue.com/">Home</a></li>
+         </ul>
+		</div>
+		<div id="recent-posts-2" class="widget widget_recent_entries">
+      <div class="widget-title"><h3>Recent Posts</h3></div>
+         <ul>
+				<li><a href="http://sfbikerescue.com/bike-blenders/" title="Bike Blenders">Bike Blenders</a></li>
+				<li><a href="http://sfbikerescue.com/things-built-using-bikes/" title="Things Built Using Bikes">Things Built Using Bikes</a></li>
+            <li><a href="http://sfbikerescue.com/bikes-i-miss-already/" title="Bikes I Miss Already">Bikes I Miss Already</a></li>
+				<li><a href="http://sfbikerescue.com/donations/" title="Donations">Donations</a></li>
+				<li><a href="http://sfbikerescue.com/stolen-bikes-in-sf/" title="Stolen Bikes in SF">Stolen Bikes in SF</a></li>
+			</ul>
+		</div>
 	</td>
 	<!-- / Left Sidebar -->
 		
@@ -138,7 +131,6 @@ app.controller('displayBikeController',function($scope, $http){
 		<div class="post-4 page type-page status-publish hentry post odd" id="post-4">
 <!--CONTENT BODY-->
 <div ng-app="displayBikeApp" ng-controller="displayBikeController">
-</div>
 <?php
 function countPics($id){
    $consolecmd = "ls -l images/bike-" . trim($id) . "-* | wc -l";
@@ -151,7 +143,7 @@ function makeList($bikeString){
    $bikeArray=explode("<br>",$bikeString);
    $len = count($bikeArray);
    for($feature=0;$feature<count($bikeArray);$feature++){
-      $bikeList = $bikeList . "    <li>" . $bikeArray[$feature] . "</li>\n"; 
+      $bikeList = $bikeList . "\t<li>" . $bikeArray[$feature] . "</li>\n"; 
    }
    $bikeList = $bikeList . "</b></ul>\n";
    return $bikeList;
@@ -161,27 +153,24 @@ $fsconnect=mysqli_connect("localhost","dbagent","patches","sfbikerescue");
 $getBikeQuery="select * from bikesforsale where bikeid=" . $_GET['id'];
 $result = $fsconnect->query($getBikeQuery);
 $bikeInfo = $result->fetch_row();
-echo "<h2>" . $bikeInfo[1] . "</h2><br>\n";
-echo "<div><table>";
-   echo "<tr><td class='description'>SFBC Code: </td><td>". $bikeInfo[0] . "</td>\n";
-   echo "<tr><td class='description'>Bike Type: </td><td>". $bikeInfo[2] . "</td>\n";
-   echo "<tr><td class='description'>Bike Price: </td><td>$". $bikeInfo[4] . "</td>\n";
-echo "</table></div>\n";
-echo "<div class='detailsList'>\n". makeList($bikeInfo[3]) . "</div>";
+echo "<h2>" . $bikeInfo[1] . "</h2><br>
+   <div><table>
+   <tr><td class='description'>SFBC Code: </td><td>" . $bikeInfo[0] . "</td>
+   <tr><td class='description'>Bike Type: </td><td>" . $bikeInfo[2] . "</td>
+   <tr><td class='description'>Bike Price: </td><td>$". $bikeInfo[4] . "</td>
+   </table></div>\n";
+echo "<div class='detailsList'>\n". makeList($bikeInfo[3]) . "</div>\n";
 echo "<span><img  class='bikepic'  src='images/bike-" . $bikeInfo[0] . "-0.jpg' width='350'></span></div>\n";
 $imgCount=countPics($_GET['id']);
 echo "<div id='thumbnails'>\n";
 for($pic=0;$pic<$imgCount;$pic++){
-echo "<span><img src = 'images/bike-" . $bikeInfo[0] ."-" . $pic . ".jpg' width='120'></span>\n" ;
+   echo "\t<span><img src = 'images/bike-" . $bikeInfo[0] ."-" . $pic . ".jpg' width='120'></span>\n" ;
 }
-echo "</div>";
-
+echo "</div>\n";
 ?>
+{{ bikeNumber }}
+</div>
 <!--END CONTENT BODY-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>	
 						
 </td>
 <!-- / Main Column -->
