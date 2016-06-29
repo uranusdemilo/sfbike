@@ -4,26 +4,11 @@
 <style>
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Bikes For Sale</title>
+	<title>Bike For Adoption</title>
 	<link rel="shortcut icon" href="http://sfbikerescue.com/wp-content/themes/atahualpa/images/favicon/new-favicon.ico">
 <!--<script type="text/javascript" src="scripts/jquery_002.js"></script>-->
 <script src="scripts/angular.min.js"></script>
 <link rel="stylesheet" type="text/css" href="scripts/sfbike.css">
-<script type="text/javascript">
-var app = angular.module('displayBikeApp',[]);
-app.controller('displayBikeController',function($scope, $http){
-   <?php 
-      echo "\$http.get('http://192.168.1.237/sfbike/scripts/showbike.php?id=" . $_GET['id'] . "')";
-   ?>
-   .then(function(response){$scope.bike = response.data.bike;});
-   $scope.bikeNumber="images/bike-<?php echo($_GET['id']);?>";
-   $scope.picNumber=0;
-   $scope.changeMainPic=function(){
-      
-   };
-});
-
-</script>
 <style type="text/css">
 .recentcomments a{
    display:inline !important;
@@ -49,9 +34,24 @@ app.controller('displayBikeController',function($scope, $http){
 }
 
 #thumbnails{
+   padding-top:20px;
    padding-bottom:20px;
 }
 </style>
+<script type="text/javascript">
+var app = angular.module('displayBikeApp',[]);
+app.controller('displayBikeController',function($scope, $http){
+   <?php 
+      echo "\$http.get('http://192.168.1.237/sfbike/scripts/showbike.php?id=" . $_GET['id'] . "')";
+   ?>
+   .then(function(response){$scope.bike = response.data.bike;});
+   $scope.bikeNumber="images/bike-<?php echo($_GET['id']);?>";
+   $scope.picNumber=0;
+   $scope.changeMainPic=function(pic){
+      $scope.picNumber=pic;
+   };
+});
+</script>
 </head>
 
 <body class="home page page-id-4 page-template-default">
@@ -130,7 +130,6 @@ app.controller('displayBikeController',function($scope, $http){
 	<td id="middle">	
 		<div class="post-4 page type-page status-publish hentry post odd" id="post-4">
 <!--CONTENT BODY-->
-<div ng-app="displayBikeApp" ng-controller="displayBikeController">
 <?php
 function countPics($id){
    $consolecmd = "ls -l images/bike-" . trim($id) . "-* | wc -l";
@@ -160,15 +159,19 @@ echo "<h2>" . $bikeInfo[1] . "</h2><br>
    <tr><td class='description'>Bike Price: </td><td>$". $bikeInfo[4] . "</td>
    </table></div>\n";
 echo "<div class='detailsList'>\n". makeList($bikeInfo[3]) . "</div>\n";
-echo "<span><img  class='bikepic'  src='images/bike-" . $bikeInfo[0] . "-0.jpg' width='350'></span></div>\n";
+echo "<div ng-app='displayBikeApp' ng-controller='displayBikeController'>";
+echo "<span><img  class='bikepic'  src='images/bike-" . $bikeInfo[0] . "-{{ picNumber}}.jpg' width='400'></span>\n";
 $imgCount=countPics($_GET['id']);
+/*echo "<div ng-app='displayBikeApp' ng-controller='displayBikeController'>";*/
 echo "<div id='thumbnails'>\n";
 for($pic=0;$pic<$imgCount;$pic++){
-   echo "\t<span><img src = 'images/bike-" . $bikeInfo[0] ."-" . $pic . ".jpg' width='120'></span>\n" ;
+      echo "\t<span><img src = 'images/bike-" .
+      $bikeInfo[0] ."-" . $pic . ".jpg' height='100' ng-click='changeMainPic(". $pic .")'></span>\n";
 }
 echo "</div>\n";
 ?>
-{{ bikeNumber }}
+{{ bikeNumber }}<br>
+   {{ picNumber }}
 </div>
 <!--END CONTENT BODY-->
 						
