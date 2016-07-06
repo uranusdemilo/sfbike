@@ -37,6 +37,11 @@
    padding-top:20px;
    padding-bottom:20px;
 }
+#button{
+   padding:5px;
+   background-color:lightgray;
+   border:1px solid black;
+}
 </style>
 <script type="text/javascript">
 var app = angular.module('displayBikeApp',[]);
@@ -102,7 +107,7 @@ app.controller('displayBikeController',function($scope, $http){
 
 				<!-- Left Sidebar -->
       <td id="left">
-		<div id="pages-2" class="widget widget_pages"><div class="widget-title"><h3>Pages</h3></div>
+		<!--<div id="pages-2" class="widget widget_pages"><div class="widget-title"><h3>Pages</h3></div>
          <ul>
             <li class="page_item page-item-47"><a href="http://sfbikerescue.com/about-us/">About Us</a></li>
             <li class="page_item page-item-32"><a href="http://sfbikerescue.com/blog/">blog</a></li>
@@ -120,7 +125,7 @@ app.controller('displayBikeController',function($scope, $http){
 				<li><a href="http://sfbikerescue.com/donations/" title="Donations">Donations</a></li>
 				<li><a href="http://sfbikerescue.com/stolen-bikes-in-sf/" title="Stolen Bikes in SF">Stolen Bikes in SF</a></li>
 			</ul>
-		</div>
+		</div>-->
 	</td>
 	<!-- / Left Sidebar -->
 		
@@ -170,9 +175,8 @@ for($pic=0;$pic<$imgCount;$pic++){
 }
 echo "</div>\n";
 ?>
-{{ bikeNumber }}<br>
-   {{ picNumber }}
 </div>
+<div><a href="forsale.html" id="button">Return to Bikes For Sale</a></div>
 <!--END CONTENT BODY-->
 						
 </td>
@@ -183,22 +187,19 @@ echo "</div>\n";
 <!-- Right Sidebar -->
 <td id="right">
 
-	<div id="categories-2" class="widget widget_categories"><div class="widget-title"><h3>Categories</h3></div>		<ul>
-	<li class="cat-item cat-item-5"><a href="http://sfbikerescue.com/category/bike-art/" title="View all posts filed under Bike Art">Bike Art</a>
-</li>
-	<li class="cat-item cat-item-6"><a href="http://sfbikerescue.com/category/bike-recovery-services/" title="View all posts filed under Bike Recovery Services">Bike Recovery Services</a>
-</li>
-	<li class="cat-item cat-item-7"><a href="http://sfbikerescue.com/category/donations/" title="View all posts filed under Donations">Donations</a>
-</li>
-	<li class="cat-item cat-item-4"><a href="http://sfbikerescue.com/category/rescues/" title="View all posts filed under Rescues">Rescues</a>
-</li>
-	<li class="cat-item cat-item-1"><a href="http://sfbikerescue.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
-</li>
+<div id="categories-2" class="widget widget_categories">
+   <!--<div class="widget-title"><h3>Categories</h3></div>
+      <ul>
+      <li class="cat-item cat-item-5"><a href="http://sfbikerescue.com/category/bike-art/" title="View all posts filed under Bike Art">Bike Art</a></li>
+      <li class="cat-item cat-item-6"><a href="http://sfbikerescue.com/category/bike-recovery-services/" title="View all posts filed under Bike Recovery Services">Bike Recovery Services</a></li>
+      <li class="cat-item cat-item-7"><a href="http://sfbikerescue.com/category/donations/" title="View all posts filed under Donations">Donations</a></li>
+      <li class="cat-item cat-item-4"><a href="http://sfbikerescue.com/category/rescues/" title="View all posts filed under Rescues">Rescues</a></li>
+      <li class="cat-item cat-item-1"><a href="http://sfbikerescue.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a></li>
 		</ul>
-</div>
+   </div>-->
+</div>   
 </td>
 <!-- / Right Sidebar -->
-
 </tr>
 <!-- / Main Body -->
 <tr>
