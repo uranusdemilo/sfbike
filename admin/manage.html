@@ -5,35 +5,66 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Bike Managment Page</title>
-	<link rel="shortcut icon" href="http://sfbikerescue.com/wp-content/themes/atahualpa/images/favicon/new-favicon.ico">
-<!--<<script type="text/javascript" src="/sfbike/scripts/jquery_002.js"></script>-->
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="shortcut icon" href="/images/new-favicon.ico">
+<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+<script src="/sfbike/scripts/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<script src="/sfbike/scripts/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/sfbike/scripts/sfbike.css">
-<script type="text/javascript">
-var app = angular.module('forSaleApp',[]);
-app.controller('forSaleController',function($scope, $http){
-   $http.get("http://192.168.1.237/sfbike/scripts/getbikes.php?type=A")
-   .then(function(response){$scope.bikes = response.data.bikes;});
-   $scope.getType = function(Type){
-      $http.get("http://192.168.1.237/sfbike/scripts/getbikes.php?type=" + Type)
-      .then(function(response){$scope.bikes = response.data.bikes;});
-      };
+<script>
+var app = angular.module("myDataApp",[]);
+app.controller("myDataController",function($scope, $http){
+	$http.get("http://192.168.1.237/sfbike/scripts/getArray.php")
+      .then(function(response){$scope.indexNumbers = response.data});
+	$http.get("http://192.168.1.237/sfbike/scripts/getbikes.php")
+      .then(function(response){$scope.bikes = response.data.bikes;
+	  $scope.goTabs();
+	  });
+	$scope.goTabs=function(){
+		var n=0;
+		while($scope.bikes[n]){
+			createTabFunction($scope.bikes[n].bikenum);
+			n++;
+		}
+	};
 });
+function createTabFunction(num){
+	var tabFunction=function(){
+		$(document).ready(function(){
+			/*$("#clickEdit" + num).click(function(){ old way */
+			$("#clickEdit" + num).on("click",function(){
+				$("#panel" + num).slideDown("slow");
+			});
+		});
+		$(document).ready(function(){
+			$("#cancelButton" + num).on("click",function(){
+				$("#panel" + num).slideUp("slow");
+			});
+		});
+	}();
+	return tabFunction;
+};
 </script>
+<!--<script src="panel2.js"></script>-->
+<script src='manage.js'></script>
 <style type="text/css">
-   .recentcomments a{
-      display:inline !important;
-      padding:0 !important;margin:0 !important;
-   }
-   
-   .tableMember{
-      font-family:helvetica;
-      padding-left:10px;
-      padding-right:10px;
-   }
-   img{
-      border:none;
-   }
+   button{
+   margin-top: 20px;
+   margin-left: 20px;
+}
+
+.slider{
+    padding: 30px;
+    display: none;
+    text-align: left;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+    width: 400px;
+}
+
+.editPane{
+	background-color: #e5eecc;
+}
 </style>
 </head>
 
@@ -53,7 +84,8 @@ app.controller('forSaleController',function($scope, $http){
 	      </tbody>
       </table> 
 		<div class="horbar1">&nbsp;</div>
-		<div id="imagecontainer" class="header-image-container" style="background: url('http://sfbikerescue.com/wp-content/themes/atahualpa/images/header/bikeheader 3.jpg') top center no-repeat;">
+		<!--<div id="imagecontainer" class="header-image-container" style="background: url('http://sfbikerescue.com/wp-content/themes/atahualpa/images/header/bikeheader 3.jpg') top center no-repeat;">-->
+		<div id="imagecontainer" class="header-image-container" style="background: url('/images/bikeheader.jpg') top center no-repeat;">
 		<div class="codeoverlay"></div><div class="opacityleft">&nbsp;</div>
 		<div class="opacityright">&nbsp;</div></div>
 		<div id="bfa_page_menu"><table style="margin: 0 auto" cellpadding="0" cellspacing="0">
@@ -70,77 +102,28 @@ app.controller('forSaleController',function($scope, $http){
 						<li id="menu-item-74" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-74"><a href="http://sfbikerescue.com/category/donations/"><span>Donations</span></a></li>
 					</ul>
 					</div>
-				</td></tr>					</tbody></table></div> <div class="horbar2">&nbsp;</div>
+				</td></tr></tbody></table></div> <div class="horbar2">&nbsp;</div>
 			</td>
 		<!-- / Header -->
 		</tr>
 
-	<!-- Main Body -->	
+<!-- Main Body -->	
 	<tr id="bodyrow">
 
-				<!-- Left Sidebar -->
+<!-- Left Sidebar -->
 		<td id="left">
-
-			<div id="pages-2" class="widget widget_pages"><div class="widget-title"><h3>Pages</h3></div>		<ul>
-			<li class="page_item page-item-47"><a href="http://sfbikerescue.com/about-us/">About Us</a></li>
-<li class="page_item page-item-32"><a href="http://sfbikerescue.com/blog/">blog</a></li>
-<li class="page_item page-item-13"><a href="http://sfbikerescue.com/contact/">Contact</a></li>
-<li class="page_item page-item-101"><a href="http://sfbikerescue.com/favorite-bike-builds/">Favorite Bike Builds</a></li>
-<li class="page_item page-item-4 current_page_item"><a href="http://sfbikerescue.com/">Home</a></li>
-		</ul>
-		</div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<div class="widget-title"><h3>Recent Posts</h3></div>		<ul>
-					<li>
-				<a href="http://sfbikerescue.com/bike-blenders/" title="Bike Blenders">Bike Blenders</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/things-built-using-bikes/" title="Things Built Using Bikes">Things Built Using Bikes</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/bikes-i-miss-already/" title="Bikes I Miss Already">Bikes I Miss Already</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/donations/" title="Donations">Donations</a>
-						</li>
-					<li>
-				<a href="http://sfbikerescue.com/stolen-bikes-in-sf/" title="Stolen Bikes in SF">Stolen Bikes in SF</a>
-						</li>
-				</ul>
-<!--		</div><div id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title"><h3>Recent Comments</h3></div><ul id="recentcomments"></ul></div><div id="ngg-mrssw-2" class="widget ngg_mrssw"><div class="widget-title"><h3>Media RSS</h3></div><ul class="ngg-media-rss-widget">-->
-  
-</ul>
-</div>
 		</td>
 		<!-- / Left Sidebar -->
-		
-				
-
-		<!-- Main Column -->
+<!-- Main Column -->
 		<td id="middle">	
 			<div class="post-4 page type-page status-publish hentry post odd" id="post-4">
-			<div class="post-headline"><h1>Manage Bikes for Sale</h1></div>
-         <div><a href="newbike.html"><h3 style="display:inline-block;padding-right:10px">New Item</h3><img src="icons/newitem.jpg"></a></div>
-<!--CONTENT BODY-->
-<div ng-app="forSaleApp" ng-controller="forSaleController">
-<table>
-    <!--<tr>
-      <th>ID</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Price</th>
-   </tr>-->
-   <tr ng-repeat="bike in bikes"><td>
-      <table>
-         <!--<td class='tableMember'>{{ bike.bikenum }}</td>-->
-         <tr><td class='tableMember'>{{ bike.biketitle }}</td>
-         <tr><td class='tableMember'>{{ bike.biketype }}</td>
-         <tr><td class='tableMember'>${{ bike.bikeprice }}</td>
-         <tr><td><a href="{{ 'editbike.html?id=' + bike.bikenum }}"><img src="icons/editbutton.jpg"></a>
-             <a href="{{ 'deletebike.html?id=' + bike.bikenum }}"><img src="icons/nukebutton.jpg"></a>
-         </tr></td></table>
-      <td>
-         <img src ="{{'/sfbike/images/bike-' + bike.bikenum + '-0.jpg'}}" height="120"></td>
-   </tr></td>
-</table>
+			<div class="post-headline" style="padding-bottom:20px;"><h1>Manage Bikes for Sale</h1></div>
+ 
+	<div ng-app="myDataApp" ng-controller="myDataController">
+		<div ng-repeat="indexNumber in indexNumbers">
+			<bike-directive></bike-directive>
+		</div>
+	</div>
 </div>
 <!--END CONTENT BODY-->
 <p>&nbsp;</p>
@@ -148,37 +131,17 @@ app.controller('forSaleController',function($scope, $http){
 <p>&nbsp;</p>
 <p>&nbsp;</p>	
 						
-	
-					
-
 </td>
 <!-- / Main Column -->
 
 <!-- Right Inner Sidebar -->
-
 <!-- Right Sidebar -->
 <td id="right">
-
-	<div id="categories-2" class="widget widget_categories"><div class="widget-title"><h3>Categories</h3></div>		<ul>
-	<li class="cat-item cat-item-5"><a href="http://sfbikerescue.com/category/bike-art/" title="View all posts filed under Bike Art">Bike Art</a>
-</li>
-	<li class="cat-item cat-item-6"><a href="http://sfbikerescue.com/category/bike-recovery-services/" title="View all posts filed under Bike Recovery Services">Bike Recovery Services</a>
-</li>
-	<li class="cat-item cat-item-7"><a href="http://sfbikerescue.com/category/donations/" title="View all posts filed under Donations">Donations</a>
-</li>
-	<li class="cat-item cat-item-4"><a href="http://sfbikerescue.com/category/rescues/" title="View all posts filed under Rescues">Rescues</a>
-</li>
-	<li class="cat-item cat-item-1"><a href="http://sfbikerescue.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
-</li>
-		</ul>
-</div>
 </td>
 <!-- / Right Sidebar -->
-
 </tr>
 <!-- / Main Body -->
 <tr>
-
 <!-- Footer -->
 <td id="footer" colspan="3">
     Copyright © 2016 <a href="http://sfbikerescue.com/">SF Bike Rescue</a> - All Rights Reserved<br>Powered by <a href="http://wordpress.org/">WordPress</a> &amp; <a href="http://forum.bytesforall.com/">Atahualpa</a>    

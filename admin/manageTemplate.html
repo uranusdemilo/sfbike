@@ -1,0 +1,21 @@
+<div>
+<table>
+	<tr><td style="width:230px;"><div><span>Inventory Number: </span><span>{{bikes[$index].bikenum}}</span></div>
+		<div>{{bikes[$index].biketitle}}</div>
+		<div>{{bikes[$index].bikeprice}}</div>
+		<img ng-src="icons/editbutton.jpg" id="{{ 'clickEdit' + indexNumber }}">
+		<img ng-src="icons/nukebutton.jpg" id="{{ 'clickHide' + indexNumber }}">
+	</td><td>
+	<!--<td><img src ="{{'/sfbike/images/bike-' + indexNumber + '-0.jpg'}}" height="100"></td></tr>-->
+	<td><img ng-src ="/sfbike/images/bike-{{bikes[$index].bikenum}}-0.jpg" height="100"></td></tr>
+</table>
+</div><br>
+<div id="{{'panel' + indexNumber}}" class="slider">
+<table>
+	<tr><td class='editPane'>Make: </td><td><input type='text' width = '30' value='{{ bikes[$index].biketitle }}'></input></td></tr>
+	<tr><td>Model: </td><td><input type='text' width = '30' value='{{ bikes[$index].biketype }}'></input></td></tr>
+	<tr><td>Price: $</td><td><input type='text' width = '30' value='{{ bikes[$index].bikeprice }}'></td></tr></input>	
+</table>
+<button type="button" id="{{'submitEdit' + indexNumber }}">Submit Edit</button>
+<button type="button" id="{{'cancelButton' + indexNumber }}">Cancel</button>
+</div>
