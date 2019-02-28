@@ -1,1 +1,1 @@
-This repository is a marketplace app for used bicycles designed to be used by a local non-profit bicycle rescue organization.  
+This repository is a marketplace app for used bicycles designed to be used by a local non-profit bicycle rescue organization.  It was abandoned years ago in frustration after a solid week of being unable to transfer a simple variable between controllers in AngularJS.
